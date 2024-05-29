@@ -26,7 +26,7 @@ stop:
 bash: build_ws
 	$(RUNNER) exec -it $(CONTAINER_NAME) bash \
 	-c ". /opt/ros/jazzy/setup.bash && . $(WS_CONTAINER)/install/setup.bash && bash"
-build_ws: run
+build_ws:
 	$(RUNNER) exec -it $(CONTAINER_NAME) bash \
 	-c ". /opt/ros/jazzy/setup.bash && colcon build"
 code-server: run

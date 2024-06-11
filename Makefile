@@ -6,7 +6,7 @@ WS_CONTAINER=/ros_ws
 MAKEFILE_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 build:
 	$(RUNNER) build -t $(IMAGE_NAME):$(IMAGE_TAG) . --net=host
-clean: run
+clean:
 	rm -rf (WS_CONTAINER)/build/ (WS_CONTAINER)/install/ (WS_CONTAINER)/log/
 run: build
 	$(RUNNER) run \
@@ -19,7 +19,7 @@ run: build
 	--workdir="$(WS_CONTAINER)" \
 	--name $(CONTAINER_NAME) \
 	$(IMAGE_NAME):$(IMAGE_TAG)
-start: run
+start:
 	$(RUNNER) start $(CONTAINER_NAME)
 stop:
 	$(RUNNER) stop $(CONTAINER_NAME)
@@ -29,5 +29,5 @@ bash: build_ws
 build_ws:
 	$(RUNNER) exec -it $(CONTAINER_NAME) bash \
 	-c ". /opt/ros/jazzy/setup.bash && colcon build"
-code-server: run
+code-server:
 	$(RUNNER) exec -it $(CONTAINER_NAME) code-server --port=8080

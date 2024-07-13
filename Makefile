@@ -23,7 +23,7 @@ start:
 	$(RUNNER) start $(CONTAINER_NAME)
 stop:
 	$(RUNNER) stop $(CONTAINER_NAME)
-bash: build_ws
+bash: 
 	$(RUNNER) exec -it $(CONTAINER_NAME) bash \
 	-c ". /opt/ros/jazzy/setup.bash && . $(WS_CONTAINER)/install/setup.bash && bash"
 build_ws:
